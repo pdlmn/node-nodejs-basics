@@ -12,5 +12,17 @@ const access = async (path) => await fs.access(path)
     .catch(() => false)
 
 export const copy = async () => {
-  
+  const isFilesExist = await access(PATH_TO_FILES)
+  const isFilesCopyExist = await access(PATH_TO_FILES_COPY)
+  const files = await fs.readdir(PATH_TO_FILES)
+
+  if (!isFilesExist || isFilesCopyExist) {
+    throw new Error('FS operation failed')
+  }
+  await fs.mkdir(PATH_TO_FILES_COPY)
+  files.forEach(file => {
+    fs.copyFile(path.join(PATH_TO_FILES, file), path.join(PATH_TO_FILES_COPY, file))
+  })
 };
+
+copy()
