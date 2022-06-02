@@ -7,14 +7,9 @@ const __dirname = path.dirname(__filename)
 const CONTENT = 'I am fresh and young'
 const PATH_TO_FILE = path.join(__dirname, 'files/fresh.txt')
 
-const access = async (path) => {
-  let result
-  await fs.access(path)
-    .then(() => result = true)
-    .catch(() => result = false)
-
-  return result
-}
+const access = async (path) => await fs.access(path)
+    .then(() =>  true)
+    .catch(() => false)
 
 export const create = async () => {
   const pathExists = await access(PATH_TO_FILE)
