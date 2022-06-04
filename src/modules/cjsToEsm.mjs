@@ -8,6 +8,7 @@ import './files/c.js'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const require = createRequire(import.meta.url)
+
 const random = Math.random();
 let unknownObject;
 
